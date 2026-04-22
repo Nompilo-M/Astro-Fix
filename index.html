@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="ticket.css" />
+  </head>
+  <body id="body">
+    <nav id="sidebar">
+      <div class="nav-header">
+        <img id="logo-img" src="images/Logo.png" alt="Logo" />
+        <button id="toggle-btn" class="burger-btn">☰</button>
+      </div>
+      <ul class="nav-main">
+        <li class="option">
+          <a href="#" onclick="showView('mgmt-view')">
+            <img src="images/home.png" alt="Home" />
+            <span class="link-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="option">
+          <a href="#" onclick="showView('issue-view')">
+            <img src="images/button.png" alt="Ticket" />
+            <span class="link-text">Create Ticket</span>
+          </a>
+        </li>
+        <li class="option">
+          <a href="#" onclick="showView('assign-view')">
+            <img src="images/table.png" alt="Assign" />
+            <span class="link-text">Assign Issues</span>
+          </a>
+        </li>
+        <li class="option">
+          <a href="#" onclick="showView('edit-view')">
+            <img src="images/edit.png" alt="Edit" />
+            <span class="link-text">Edit Issues</span>
+          </a>
+        </li>
+        <li class="option">
+          <a href="#" onclick="showView('kanban-view')">
+            <img src="images/dashboard.png" alt="Kanban" />
+            <span class="link-text">Kanban View</span>
+          </a>
+        </li>
+      </ul>
+      <ul id="account">
+        <li class="option">
+          <a href="">
+            <img src="images/profile.png" alt="User" />
+            <span class="link-text">Profile</span>
+          </a>
+        </li>
+        <li class="option">
+          <a href="">
+            <img src="images/logout.png" alt="Logout" />
+            <span class="link-text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <header>
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search..." />
+          <div class="icon-box">
+            <img src="images/loupe.png" alt="Search" class="search-icon" />
+          </div>
+        </div>
+        <div class="controls-container">
+          <select class="dropdown">
+            <option value="asc-alpha">Alphabetical (A-Z)</option>
+            <option value="desc-alpha">Alphabetical (Z-A)</option>
+            <option value="asc-id">ID Number (Low-High)</option>
+            <option value="desc-id">ID Number (High-Low)</option>
+          </select>
+          <button type="button" class="filter-btn">Filter</button>
+        </div>
+      </header>
+
+      <div id="mgmt-view" class="content-view">
+        <article>
+          <section class="mgmt-column">
+            <h1>Manage People</h1>
+            <form id="person-form" class="mgmt-form">
+              <input type="text" id="p-name" placeholder="Name" required />
+              <input type="text" id="p-surname" placeholder="Surname" required/>
+              <input type="email" id="p-email" placeholder="Email" required />
+              <input type="text" id="p-username" placeholder="Username" required/>
+              <button type="submit" class="save-btn">Add Person</button>
+            </form>
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>User</th>
+                  </tr>
+                </thead>
+                <tbody id="people-tbody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="mgmt-column">
+            <h1>Team Directory</h1>
+            <div class="list-container" id="people-display"></div>
+          </section>
+
+          <section class="mgmt-column">
+            <h1>Projects Management</h1>
+            <form id="project-form" class="mgmt-form">
+              <input type="text" id="proj-name" placeholder="New Project Name" required/>
+              <button type="submit" class="save-btn">Create Project</button>
+            </form>
+            <div class="list-wrapper">
+              <ul id="projects-display" class="project-list"></ul>
+            </div>
+          </section>
+        </article>
+      </div>
+
+      <!-- VIEW 2: Create Ticket -->
+      <div id="issue-view" class="content-view hidden">
+        <div class="ticket-bg">
+          <div class="ticket-card">
+            <h2 class="section-title" style="font-size: xx-large">Create Ticket</h2>
+            <label>Summary *</label>
+            <input id="f-summary" placeholder="Short description of the issue"/>
+            <label>Description</label>
+            <textarea id="f-description" placeholder="Detailed description..."></textarea>
+
+            <h2 class="section-title">STATUS &amp; PRIORITY</h2>
+            <div class="two-col">
+              <div>
+                <label>Status</label>
+                <input type="hidden" id="f-status" value="open" />
+                <div class="pill-row" id="status-row">
+                  <button type="button" class="pill active" data-val="open">open</button>
+                  <button type="button" class="pill" data-val="resolved">resolved</button>
+                  <button type="button" class="pill" data-val="overdue">overdue</button>
+                </div>
+              </div>
+
+              <div>
+                <label>Priority</label>
+                <input type="hidden" id="f-priority" value="medium" />
+                <div class="pill-row" id="priority-row">
+                  <button type="button" class="pill" data-val="low">low</button>
+                  <button type="button" class="pill active" data-val="medium">
+                    medium
+                  </button>
+                  <button type="button" class="pill" data-val="high">
+                    high
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="section-title">PEOPLE &amp; PROJECT</h2>
+            <div class="three-col">
+              <div>
+                <label>Identified by</label>
+                <select id="f-identified-by"></select>
+              </div>
+              <div>
+                <label>Assigned to</label>
+                <select id="f-assignee"></select>
+              </div>
+              <div>
+                <label>Project</label>
+                <select id="f-project"></select>
+              </div>
+            </div>
+
+            <h2 class="section-title">DATES</h2>
+            <div class="three-col date-spacing">
+              <div>
+                <label>Date identified</label>
+                <input type="date" id="f-date-identified" />
+              </div>
+              <div>
+                <label>Target resolution date</label>
+                <input type="date" id="f-target-date" />
+              </div>
+              <div></div>
+            </div>
+
+            <div class="ticket-actions">
+              <button class="btn-secondary" onclick="showView('mgmt-view')">
+                Cancel
+              </button>
+              <button class="btn-primary" onclick="saveIssue()">
+                Save Issue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 3: Assignment List (Member 2) -->
+      <div id="assign-view" class="content-view hidden">
+        <article>
+          <section class="mgmt-column" style="width: 95%">
+            <h1>Assign & Manage Issues</h1>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Summary</th>
+                  <th>Status</th>
+                  <th>Priority</th>
+                  <th>Project</th>
+                  <th>Assignee</th>
+                </tr>
+              </thead>
+              <tbody id="assign-list"></tbody>
+            </table>
+          </section>
+        </article>
+      </div>
+
+      <!-- VIEW 4: Edit form (Member 4) -->
+      <div id="edit-view" class="content-view hidden">
+        <article>
+          <div class="ticket-bg">
+            <div class="ticket-card" id="edit-form">
+              <h2 class="section-title" style="font-size: xx-large">Edit Ticket</h2>
+
+              <label>Select issue *</label>
+              <div style="display: flex; gap: 10px; margin-bottom: 20px">
+                <select id="issue-select" style="flex: 1">
+                  <option value="">— choose an issue —</option>
+                </select>
+                <button type="button" class="btn-secondary" onclick="loadIssue()">Load</button>
+              </div>
+
+              <label>Summary *</label>
+              <input id="edit-summary" placeholder="Short description of the issue"/>
+              <label>Description</label>
+              <textarea id="edit-description" placeholder="Detailed description..."></textarea>
+              <label>Resolution summary</label>
+              <textarea id="edit-resolution-summary" placeholder="How was this issue resolved?"></textarea>
+              <h2 class="section-title">STATUS & PRIORITY</h2>
+              <input type="hidden" id="edit-status" />
+              <input type="hidden" id="edit-priority" />
+              <div class="two-col">
+                <div>
+                  <label>Status</label>
+                  <div class="pill-row" id="edit-status-row">
+                    <button type="button" class="pill" onclick="editSetStatus('open')">open</button>
+                    <button type="button" class="pill" onclick="editSetStatus('resolved')">resolved</button>
+                    <button type="button" class="pill" onclick="editSetStatus('overdue')">overdue</button>
+                  </div>
+                </div>
+                <div>
+                  <label>Priority</label>
+                  <div class="pill-row" id="edit-priority-row">
+                    <button type="button" class="pill" onclick="editSetPriority('low')">low</button>
+                    <button type="button" class="pill" onclick="editSetPriority('medium')">medium</button>
+                    <button type="button" class="pill" onclick="editSetPriority('high')">high</button>
+                  </div>
+                </div>
+              </div>
+              <h2 class="section-title">PEOPLE & PROJECT</h2>
+              <div class="three-col">
+                <div>
+                  <label>Identified by</label>
+                  <select id="edit-identified-by"></select>
+                </div>
+                <div>
+                  <label>Assigned to</label>
+                  <select id="edit-assigned-to"></select>
+                </div>
+                <div>
+                  <label>Project</label>
+                  <select id="edit-project"></select>
+                </div>
+              </div>
+              <h2 class="section-title">DATES</h2>
+              <div class="three-col date-spacing">
+                <div>
+                  <label>Date identified</label>
+                  <input type="date" id="edit-date-identified" />
+                </div>
+                <div>
+                  <label>Target resolution date</label>
+                  <input type="date" id="edit-target-date" />
+                </div>
+                <div>
+                  <label>Actual resolution date</label>
+                  <input type="date" id="edit-actual-date" />
+                </div>
+              </div>
+              <div class="ticket-actions">
+                <button class="btn-secondary" onclick="cancelEdit()">Cancel</button>
+                <button class="btn-primary" onclick="saveIssue()">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- VIEW 5: Kanban Dashboard (Member 3) -->
+      <div id="kanban-view" class="content-view hidden">
+        <article></article>
+      </div>
+      <footer id="active-inspector">
+        <div id="inspector-content">Select a person or project to see details</div>
+      </footer>
+      <div id="filter-modal" class="filter-popup hidden">
+        <div class="filter-box">
+          <h4 id="filter-title">Filter Options</h4>
+          <div id="filter-fields">
+          </div>
+          <div class="filter-actions">
+            <button onclick="closeFilter()" class="save-btn" style="background: #ccc">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="sidebar.js"></script>
+    <script src="data.js"></script>
+    <script src="header-controls.js"></script>
+  </body>
+</html>

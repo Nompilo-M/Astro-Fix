@@ -1,0 +1,152 @@
+html {
+  height: 100%;
+}
+body {
+  display: flex;
+  overflow-x: hidden;
+  margin: 0;
+  min-height: 100%;
+  background: none;
+}
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2; /* Furthest back */
+  background: linear-gradient(to bottom, #000000, #001d3d, #87ceeb, #fffcda);
+  background-size: 100% 400%;
+  animation: skyCycle 60s infinite alternate ease-in-out;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.8) 1.5px, transparent 1.5px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size:
+    71px 81px,
+    113px 113px,
+    123px 193px;
+  background-position:
+    0 0,
+    68px 38px,
+    0px 80px;
+  animation: starsAppear 60s infinite alternate ease-in-out;
+  transform: rotate(3deg) scale(1.1);
+}
+@keyframes skyCycle {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+@keyframes starsAppear {
+  0%,
+  30% {
+    opacity: 1;
+  }
+  70%,
+  100% {
+    opacity: 0;
+  }
+}
+nav {
+  display: flex;
+  flex-direction: column;
+  width: 8em;
+  min-width: 8em;
+  height: 95vh;
+  padding: 1em;
+  position: fixed;
+  top: 1em;
+  margin-top: -1em;
+  margin-bottom: -1em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+  align-items: center;
+}
+nav.expanded {
+  width: 20em;
+}
+.burger-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+.option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5em;
+  background-color: rgb(247, 221, 137);
+  border-radius: 1em;
+  list-style: none;
+  position: relative;
+  margin-top: 2em;
+  width: 5em;
+  min-width: 5em;
+  overflow: hidden;
+  padding: 0 0.5em;
+}
+.link-text {
+  display: none;
+  opacity: 0;
+  margin-left: 1em;
+  white-space: nowrap;
+  color: #001d3d;
+  font-weight: bold;
+}
+nav.expanded .link-text {
+  display: inline-block;
+  opacity: 1;
+}
+.option img {
+  width: 3.5em;
+  height: 3.5em;
+  object-fit: contain;
+}
+.option a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+nav.expanded .option {
+  width: 77%;
+  justify-content: flex-start;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+#logo-img {
+  width: 8em;
+}
+#account {
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+nav.expanded #account {
+  width: 77%;
+  justify-content: flex-start;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}

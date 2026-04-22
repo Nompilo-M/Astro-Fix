@@ -1,0 +1,620 @@
+.nav-main {
+  flex-grow: 1;
+  padding: 0;
+}
+header {
+  position: sticky;
+  top: 0;
+  margin-right: -0.5em;
+  height: 4vh;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-style: groove;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  z-index: 1;
+  overflow: auto;
+}
+footer {
+  position: sticky;
+  width: 100%;
+  min-height: 15vh;
+  background: linear-gradient(
+    to top right,
+    rgb(166, 87, 240, 0.8),
+    rgb(137, 203, 241, 1)
+  );
+  bottom: 0;
+  border-style: groove;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 12px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+article {
+  display: flex;
+  min-width: 100%;
+  min-height: 100%;
+  background: linear-gradient(
+    to bottom right,
+    rgb(166, 87, 240, 0.8),
+    rgb(137, 203, 241, 1)
+  );
+  border-style: groove;
+  overflow-x: hidden;
+  margin: auto;
+}
+.mgmt-column {
+  flex: 1;
+  margin: 2%;
+  min-width: 300px;
+  background: rgb(247, 221, 137);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  color: rgb(60, 43, 78);
+}
+.mgmt-column h1 {
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  padding-bottom: 10px;
+}
+.mgmt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.table-wrapper {
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: rgb(0, 0, 0);
+  font-size: large;
+  text-align: left;
+}
+.data-table thead {
+  background: rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+}
+.data-table th {
+  padding: 12px 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  border-bottom: 2px solid rgb(247, 221, 137);
+}
+.data-table tr {
+  background-color: rgb(0, 0, 0, 0.3);
+}
+.data-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.data-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transition: 0.2s;
+}
+.data-table td:first-child {
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  width: 40px;
+}
+.mgmt-form input {
+  padding: 1em;
+  width: 90%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.save-btn {
+  padding: 12px;
+  background-color: rgb(200, 174, 235);
+  border: 1 #7963b8;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.save-btn:hover {
+  background-color: #7963b8;
+}
+.data-card {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 4px solid rgb(247, 221, 137);
+}
+main {
+  margin-left: 10em;
+  flex-grow: 1;
+  min-height: 100%;
+  transition: margin-left 0.3s ease;
+}
+nav#sidebar.expanded ~ main {
+  margin-left: 22em;
+}
+nav#sidebar.expanded ~ main header,
+nav#sidebar.expanded ~ main footer {
+  left: 22em;
+  transition: left 0.3s ease;
+}
+.search-container {
+  display: flex;
+  align-items: stretch;
+}
+.search-input {
+  padding: 10px 16px;
+  width: 300px;
+  border: 1px solid #d1d1d1;
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  font-size: 14px;
+  outline: none;
+}
+.icon-box {
+  background-color: rgb(247, 221, 137);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+}
+.search-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+.controls-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding-left: 20px;
+}
+.dropdown {
+  padding: 10px 14px;
+  background-color: rgb(247, 221, 137);
+  border: 1px solid #d1d1d1;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bolder;
+}
+.filter-btn {
+  padding: 10px 24px;
+  background-color: #8874fc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+.filter-btn:hover {
+  background-color: #3a2e80;
+}
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+.project-item {
+  background: rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  border-left: 4px solid rgb(151, 117, 4);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.project-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+.delete-action-btn {
+  background-color: #e94560;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-weight: bolder;
+  font-size: larger;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    transform 0.2s;
+}
+.delete-action-btn:hover {
+  background-color: #ff2e51;
+  transform: translateY(-2px);
+}
+
+#inspector-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  height: 100%;
+  padding: 12px 16px;
+  background: rgb(247, 221, 137);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  overflow-x: auto;
+  min-height: 0;
+}
+
+#inspector-content > span {
+  display: inline-block;
+  padding: 1.2em 2em;
+  border-radius: 1em;
+  font-size: 1rem;
+  font-weight: bolder;
+  color: #1f0942;
+  background-color: rgb(200, 174, 235);
+  white-space: nowrap;
+}
+
+.content-view {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+#issue-view article {
+  justify-content: center;
+  align-items: flex-start;
+}
+.hidden {
+  display: none !important;
+}
+.filter-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  min-width: 300px;
+}
+.filter-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #333;
+}
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+#edit-view {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 60px);
+  overflow: hidden;
+}
+#kanban-view {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+.inspector-cards-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  flex: 1;
+  align-items: stretch;
+  padding: 4px 0;
+}
+
+.inspector-card {
+  background: #fff;
+  border: 2px solid rgb(200, 174, 235);
+  border-radius: 12px;
+  padding: 12px 14px;
+  min-width: 240px;
+  max-width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(136, 116, 252, 0.2);
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+.inspector-card:hover {
+  box-shadow: 0 4px 14px rgba(136, 116, 252, 0.35);
+  border-color: #8874fc;
+}
+.inspector-card-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.inspector-card-type-badge {
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.inspector-card-id {
+  font-weight: 700;
+  color: #3c2b4e;
+  font-size: 11px;
+}
+.inspector-card-badge {
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.inspector-card-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #aaa;
+  font-size: 13px;
+  padding: 0 2px;
+  line-height: 1;
+  border-radius: 50%;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.inspector-card-close:hover {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+}
+.inspector-card-summary {
+  font-weight: 700;
+  color: #1f0942;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+.inspector-card-meta {
+  display: flex;
+  gap: 8px;
+  color: #555;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+.inspector-card-delete {
+  background: #e94560;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 4px;
+  transition: background 0.2s;
+  text-align: left;
+}
+.inspector-card-delete:hover {
+  background: #c0392b;
+}
+.inspector-clear-all {
+  background: rgb(200, 174, 235);
+  color: #3c2b4e;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: center;
+  transition: background 0.2s;
+}
+.inspector-clear-all:hover {
+  background: #8874fc;
+  color: #fff;
+}
+
+tr[data-issue-id] td {
+  cursor: pointer;
+}
+tr[data-issue-id]:hover td {
+  background: rgba(255, 255, 255, 0.25);
+  transition: 0.2s;
+}
+tr[data-issue-id].inspector-selected td {
+  background: rgba(136, 116, 252, 0.2) !important;
+  border-left: 3px solid #8874fc;
+}
+
+tr[data-person-id] {
+  cursor: pointer;
+}
+tr[data-person-id]:hover td {
+  background: rgba(255, 255, 255, 0.25);
+  transition: 0.2s;
+}
+tr[data-person-id].inspector-selected td {
+  background: rgba(39, 174, 96, 0.2) !important;
+  border-left: 3px solid #27ae60;
+}
+
+li[data-project-id].inspector-selected {
+  background: rgba(243, 156, 18, 0.25) !important;
+  border-left: 4px solid #f39c12 !important;
+  transform: translateX(5px);
+}
+
+.kanban-card {
+  transition:
+    box-shadow 0.2s,
+    outline 0.2s;
+}
+.kanban-card.inspector-selected {
+  outline: 3px solid #8874fc;
+  box-shadow: 0 0 0 4px rgba(136, 116, 252, 0.25);
+  background: rgba(136, 116, 252, 0.08) !important;
+}
+
+#people-display {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+.team-directory-card {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background 0.2s;
+}
+.team-directory-card:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+.team-dir-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.team-dir-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgb(200, 174, 235);
+  color: #3c2b4e;
+  font-weight: 800;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.team-dir-name {
+  font-weight: 700;
+  font-size: 13px;
+  color: #1f0942;
+}
+.team-dir-username {
+  font-size: 11px;
+  color: #555;
+}
+.team-dir-count {
+  margin-left: auto;
+  background: #8874fc;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.team-dir-empty {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  margin: 0;
+}
+.team-dir-table {
+  font-size: 12px;
+}
+.team-dir-table td {
+  padding: 8px 10px;
+}
+.team-dir-table tr[data-issue-id] td {
+  cursor: pointer;
+}
+.team-dir-table tr[data-issue-id]:hover td {
+  background: rgba(255, 255, 255, 0.2);
+}
+.team-dir-table tr[data-issue-id].inspector-selected td {
+  background: rgba(136, 116, 252, 0.2) !important;
+  border-left: 3px solid #8874fc;
+}
+.team-dir-status-badge {
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.kanban-board {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+}
+.kanban-column {
+  flex: 1;
+  background: rgba(247, 221, 137, 0.9);
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 260px;
+}
+.kanban-column h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  padding-bottom: 8px;
+}
+.kanban-card {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.kanban-card .id {
+  font-size: 11px;
+  font-weight: bold;
+  color: #555;
+}
+.kanban-card .summary {
+  font-weight: 700;
+  margin: 5px 0;
+}
+.kanban-card .meta {
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+}
